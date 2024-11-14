@@ -15,14 +15,14 @@ while True:
         break
     
     elif choice == "1":
-        food.lower() = input("Enter the name of Food: ")
+        food = input("Enter the name of Food: ").lower()
         favorite_foods.append(food)
         print(f"{food}, Successfully Added.")
         
     elif choice == "2":
-        food = input("Enter the Name of the Food which want to revome: ")
+        food = input("Enter the Name of the Food which want to remove: ").lower()
         if food in favorite_foods:
-            favorite_foods.remove(food.lower())
+            favorite_foods.remove(food)
             print(f"{food}, removed Successfully.")
         else:
             print(f"{food} is not exist in list.")
