@@ -15,8 +15,8 @@ while True:
         break
     
     elif choice == "1":
-        food = input("Enter the name of Food: ")
-        favorite_foods.append(food.lower())
+        food.lower() = input("Enter the name of Food: ")
+        favorite_foods.append(food)
         print(f"{food}, Successfully Added.")
         
     elif choice == "2":
