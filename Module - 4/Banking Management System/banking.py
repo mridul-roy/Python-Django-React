@@ -23,7 +23,7 @@ class Banking:
                         
 clint = Banking("Mridul", 10000)
 
-print("Welcome to Bank Management System!!!")    
+print("Welcome to Bank Management System!!")    
         
 print(f"Account Name: {clint.name}")
 print(f"Account Balance: {clint.balance}")
