@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Bob",
+        "email": "bob12@hotmail.com",
+        "phone_num": "234245244",
+        "address": "Califonia",
+        "date_of_birth": "1999-12-1",
+        "nationality": "American"
+    },
+    {
+        "name": "Wick",
+        "email": "wick007@gmail.com",
+        "phone_num": "40002324",
+        "address": "UK",
+        "date_of_birth": "1995-05-12",
+        "nationality": "British"
+    }
+]
