@@ -1,0 +1,22 @@
+[
+    {
+        "title": "alcamest",
+        "author": "paulo",
+        "isbn": 61936,
+        "year": 1990,
+        "price": 250,
+        "quantity": 49,
+        "addedTime": "13-12-2024,23:01:34",
+        "last_updatedTime": ""
+    },
+    {
+        "title": "man search for meaning",
+        "author": "viktor",
+        "isbn": 10237,
+        "year": 1998,
+        "price": 250,
+        "quantity": 50,
+        "addedTime": "13-12-2024,23:04:17",
+        "last_updatedTime": ""
+    }
+]
