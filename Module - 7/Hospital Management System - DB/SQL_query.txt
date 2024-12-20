@@ -1,0 +1,101 @@
+Tables Creation:
+
+CREATE TABLE DOCTORS (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    NAME VARCHAR(255) NOT NULL,
+    SPECIALIZATION VARCHAR(255) NOT NULL,
+    PHONE VARCHAR(255) NOT NULL,
+    EMAIL VARCHAR(255) NOT NULL,
+    ADDRESS VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE PATIENTS (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    NAME VARCHAR(255) NOT NULL,
+    AGE INT NOT NULL,
+    GENDER VARCHAR(255) NOT NULL,
+    PHONE VARCHAR(255) NOT NULL);
+
+CREATE TABLE  APPOINTEMNTS(
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    PATIENT_ID INT NOT NULL,
+    DOCTOR_ID INT NOT NULL,
+    APPOINTMENT_DATE DATE NOT NULL,
+    APPOINTMENT_TIME TIME NOT NULL,
+    STATUS VARCHAR(255) NOT NULL,
+    FOREIGN KEY (PATIENT_ID) REFERENCES PATIENTS(ID),
+    FOREIGN KEY (DOCTOR_ID) REFERENCES DOCTORS(ID)
+);
+
+CREATE TABLE DEPARTMENTS (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    NAME VARCHAR(255) NOT NULL,
+    LOCATION VARCHAR(255) NOT NULL
+);
+
+SHOW TABLES;
+--------------------------------------------------------------------------------
+Doctoes Table Data:
+
+INSERT INTO DOCTORS (NAME, SPECIALIZATION, PHONE, EMAIL, ADDRESS)
+VALUES 
+('Dr. John Smith', 'Cardiologist', '123-456-7890', 'john.smith@example.com', '123 Main St, NY'),
+('Dr. Emily Johnson', 'Dermatologist', '321-654-0987', 'emily.j@example.com', '456 Oak St, CA'),
+('Dr. Michael Brown', 'Pediatrician', '555-123-4567', 'michael.b@example.com', '789 Pine St, TX'),
+('Dr. Sarah Wilson', 'Orthopedic', '987-654-3210', 'sarah.w@example.com', '101 Maple St, FL'),
+('Dr. James Anderson', 'Neurologist', '222-333-4444', 'james.a@example.com', '222 Cedar St, OH'),
+('Dr. Linda White', 'Gynecologist', '444-555-6666', 'linda.w@example.com', '333 Birch St, NV'),
+('Dr. David Clark', 'ENT Specialist', '666-777-8888', 'david.c@example.com', '444 Spruce St, AZ'),
+('Dr. Laura Hall', 'Oncologist', '888-999-0000', 'laura.h@example.com', '555 Redwood St, WA'),
+('Dr. Robert Lewis', 'Urologist', '111-222-3333', 'robert.l@example.com', '666 Cherry St, MA'),
+('Dr. Patricia Young', 'Psychiatrist', '333-444-5555', 'patricia.y@example.com', '777 Elm St, MI');
+
+SELECT * FROM DOCTORS;
+
+Patients Table Data:
+
+INSERT INTO PATIENTS (NAME, AGE, GENDER, PHONE)
+VALUES 
+('Alice Brown', 30, 'Female', '123-456-7891'),
+('Bob Williams', 45, 'Male', '987-654-3211'),
+('Catherine Johnson', 25, 'Female', '555-123-4578'),
+('Daniel Martinez', 60, 'Male', '111-222-3344'),
+('Eleanor Thompson', 35, 'Female', '222-333-4455'),
+('Frank Harris', 50, 'Male', '333-444-5566'),
+('Grace Lopez', 40, 'Female', '444-555-6677'),
+('Henry Allen', 29, 'Male', '666-777-8899'),
+('Irene Scott', 55, 'Female', '777-888-9900'),
+('Jack Davis', 20, 'Male', '888-999-1122');
+
+Departsments Table Data:
+
+INSERT INTO DEPARTMENTS (NAME, LOCATION)
+VALUES 
+('Cardiology', 'Building A, 2nd Floor'),
+('Dermatology', 'Building B, 1st Floor'),
+('Pediatrics', 'Building C, 3rd Floor'),
+('Orthopedics', 'Building D, Ground Floor'),
+('Neurology', 'Building E, 2nd Floor'),
+('Gynecology', 'Building F, 1st Floor'),
+('ENT', 'Building G, Ground Floor'),
+('Oncology', 'Building H, 3rd Floor'),
+('Urology', 'Building I, 1st Floor'),
+('Psychiatry', 'Building J, 2nd Floor');
+
+
+Appointments Table Data:
+
+INSERT INTO APPOINTEMNTS (PATIENT_ID, DOCTOR_ID, APPOINTMENT_DATE, APPOINTMENT_TIME, STATUS)
+VALUES
+(1, 1, '2024-12-20', '10:00:00', 'Scheduled'),
+(2, 3, '2024-12-21', '11:00:00', 'Scheduled'),
+(3, 5, '2024-12-22', '12:30:00', 'Completed'),
+(4, 2, '2024-12-23', '14:00:00', 'Scheduled'),
+(5, 4, '2024-12-24', '15:00:00', 'Cancelled'),
+(6, 7, '2024-12-25', '16:30:00', 'Scheduled'),
+(7, 6, '2024-12-26', '09:00:00', 'Completed'),
+(8, 8, '2024-12-27', '13:00:00', 'Scheduled'),
+(9, 9, '2024-12-28', '17:00:00', 'Scheduled'),
+(10, 10, '2024-12-29', '18:30:00', 'Cancelled');
+
+SELECT * FROM APPOINTEMNTS;
