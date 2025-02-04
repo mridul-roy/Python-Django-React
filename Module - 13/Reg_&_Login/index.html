@@ -1,63 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login & Registration System</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="text-center" id="form-title">Login</h3>
-          </div>
-          <div class="card-body">
-            <form id="login-form">
-              <div class="mb-3">
-                <label for="login-email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="login-email" required>
-              </div>
-              <div class="mb-3">
-                <label for="login-password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="login-password" required>
-              </div>
-              <button type="submit" class="btn btn-primary w-100">Login</button>
-            </form>
-
-            
-            <form id="register-form" style="display: none;">
-              <div class="mb-3">
-                <label for="register-name" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="register-name" required>
-              </div>
-              <div class="mb-3">
-                <label for="register-email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="register-email" required>
-              </div>
-              <div class="mb-3">
-                <label for="register-password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="register-password" required>
-              </div>
-              <button type="submit" class="btn btn-success w-100">Register</button>
-            </form>
-
-            
-            <div class="text-center mt-3">
-              <button id="toggle-login" class="btn btn-link">Login</button>
-              <button id="toggle-register" class="btn btn-link">Register</button>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div id="alertBox" class="alert d-none" role="alert"></div>
+                
+                <div id="registerForm">
+                    <h3>Register</h3>
+                    <input type="text" id="fullName" class="form-control my-2" placeholder="Full Name">
+                    <input type="email" id="registerEmail" class="form-control my-2" placeholder="Email">
+                    <input type="password" id="registerPassword" class="form-control my-2" placeholder="Password">
+                    <button class="btn btn-primary w-100" onclick="registerUser()">Register</button>
+                    <p class="mt-2">Already have an account? <a href="#" onclick="toggleForms()">Login</a></p>
+                </div>
+                
+                <div id="loginForm" class="d-none">
+                    <h3>Login</h3>
+                    <input type="email" id="loginEmail" class="form-control my-2" placeholder="Email">
+                    <input type="password" id="loginPassword" class="form-control my-2" placeholder="Password">
+                    <button class="btn btn-success w-100" onclick="loginUser()">Login</button>
+                    <p class="mt-2">Don't have an account? <a href="#" onclick="toggleForms()">Register</a></p>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <script src="script.js"></script>
+    <script>
+        function showAlert(message, type) {
+            let alertBox = document.getElementById("alertBox");
+            alertBox.className = `alert alert-${type}`;
+            alertBox.textContent = message;
+            alertBox.classList.remove("d-none");
+            setTimeout(() => alertBox.classList.add("d-none"), 3000);
+        }
+
+        function toggleForms() {
+            document.getElementById("registerForm").classList.toggle("d-none");
+            document.getElementById("loginForm").classList.toggle("d-none");
+        }
+
+        function registerUser() {
+            let fullName = document.getElementById("fullName").value;
+            let email = document.getElementById("registerEmail").value;
+            let password = document.getElementById("registerPassword").value;
+            
+            if (!fullName || !email || !password) {
+                showAlert("All fields are required!", "danger");
+                return;
+            }
+            
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            if (users.some(user => user.email === email)) {
+                showAlert("Email already registered!", "warning");
+                return;
+            }
+            
+            users.push({ fullName, email, password });
+            localStorage.setItem("users", JSON.stringify(users));
+            showAlert("Registration successful!", "success");
+            toggleForms();
+        }
+
+        function loginUser() {
+            let email = document.getElementById("loginEmail").value;
+            let password = document.getElementById("loginPassword").value;
+            
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            let user = users.find(user => user.email === email && user.password === password);
+            
+            if (user) {
+                showAlert("Login successful!", "success");
+            } else {
+                showAlert("Invalid email or password!", "danger");
+            }
+        }
+    </script>
 </body>
 </html>
