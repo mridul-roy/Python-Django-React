@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Update Book - {{ book.title }}{% endblock %}
+
+{% block content %}
+<main class="container auto p-8 ml-64">
+    <h1 class="text-center">Update Book - {{ book.title }}</h1>
+
+    <div class="card shadow p-4">
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success">Update</button>
+                    <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}
